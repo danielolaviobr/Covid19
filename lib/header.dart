@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'dart:math' as math;
 
 class Header extends StatelessWidget {
-  final offset;
+  final double offset;
   Header({this.offset});
   @override
   Widget build(BuildContext context) {
@@ -46,16 +46,19 @@ class Header extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: (this.offset < 0) ? 20 : this.offset,
+              top: this.offset <= 0 ? 20 : this.offset + 20,
+              left: -30,
               child: Container(
                 padding: EdgeInsets.only(top: 30),
                 height: 300,
-                //width: 300,
+                width: 300,
                 child: SvgPicture.asset('assets/svg/sick.svg'),
               ),
             ),
             Positioned(
-              top: (this.offset < 0) ? 20 : this.offset / 2,
+              //top: (widget.offset < 0) ? 0 : widget.offset,
+              top: this.offset <= 0 ? 100 : this.offset + 100,
+              left: 250,
               child: Text(
                 'Covid-19',
                 style: kHeaderTitle,
