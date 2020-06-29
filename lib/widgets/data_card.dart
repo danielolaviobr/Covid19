@@ -4,9 +4,9 @@ import 'package:covid19/constants.dart';
 class DataCard extends StatelessWidget {
   final String title;
   final String text;
-  final Function onTap;
+  final Color color;
 
-  const DataCard({Key key, this.title, this.text, this.onTap})
+  const DataCard({Key key, this.title, this.text, this.color})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -34,22 +34,16 @@ class DataCard extends StatelessWidget {
               width: 30.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red.withOpacity(0.5),
+                color: this.color.withOpacity(0.5),
               ),
               child: Container(
                 padding: EdgeInsets.all(5),
                 height: 30.0,
                 width: 30.0,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.red.withOpacity(0.8),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.red.withOpacity(0.5),
-                  ),
-                ),
+                    color: Colors.transparent,
+                    border: Border.all(width: 4, color: this.color)),
               ),
             ),
             SizedBox(width: 35.0),
@@ -59,14 +53,19 @@ class DataCard extends StatelessWidget {
                 SizedBox(height: 10),
                 Text(
                   this.title,
-                  style: TextStyle(fontSize: 20, fontFamily: 'Dosis'),
+                  style: TextStyle(
+                      fontSize: 30, fontFamily: 'Dosis', color: this.color),
                 ),
                 SizedBox(height: 20),
-                SizedBox(
-                    width: 180,
+                Container(
+                    alignment: Alignment.center,
+                    width: 250,
                     child: Text(
                       this.text,
-                      style: TextStyle(fontSize: 17, fontFamily: 'Dosis'),
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontFamily: 'Dosis',
+                      ),
                     ))
               ],
             )

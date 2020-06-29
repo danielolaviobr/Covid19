@@ -25,6 +25,9 @@ dependencies:
     sdk: flutter
   flutter_svg: ^0.18.0
   http: ^0.12.1
+  fl_chart: ^0.10.0
+  get: ^3.1.2
+
 
 
 

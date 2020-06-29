@@ -1,9 +1,9 @@
-import 'package:covid19/brasil_data.dart';
-import 'package:covid19/header.dart';
-import 'package:covid19/info_card.dart';
-import 'package:covid19/info_slider.dart';
+import 'package:covid19/screens/brasil_data.dart';
+import 'package:covid19/widgets/header.dart';
+import 'package:covid19/widgets/info_card.dart';
+import 'package:covid19/widgets/info_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
 class PageTemplate extends StatefulWidget {
   @override
@@ -14,15 +14,6 @@ class _PageTemplateState extends State<PageTemplate> {
   ScrollController _controller = ScrollController();
   double offset = 0;
   var response;
-
-  Future<void> getData() async {
-    print('getting data');
-    response = await http
-        .get('https://covid19-brazil-api.now.sh/api/report/v1/brazil');
-    response.statusCode == 200
-        ? print(response.body)
-        : print(response.statusCode);
-  }
 
   @override
   void initState() {
@@ -59,9 +50,7 @@ class _PageTemplateState extends State<PageTemplate> {
               title: 'Dados',
               text: 'Veja aqui os dados sobre o Corona Virus no Brasil',
               onTap: () {
-                getData();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BrasilData()));
+                Get.to(BrasilData());
               },
             ),
             SizedBox(
