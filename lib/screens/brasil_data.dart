@@ -1,3 +1,4 @@
+import 'package:covid19/widgets/basic_container.dart';
 import 'package:covid19/widgets/data_card.dart';
 import 'package:covid19/main.dart';
 import 'package:covid19/widgets/drop_list.dart';
@@ -15,10 +16,21 @@ class _BrasilDataState extends State<BrasilData> {
   String selected = 'Brasil';
 
   Widget graphic() {
-    if (checker) {
+    if (selected != 'Brasil') {
       return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: BarChartSample3());
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: BasicContainer(
+          child: Column(
+            children: [
+              Text(
+                'Mortes nos ultimos 7 dias',
+                style: TextStyle(fontSize: 30, fontFamily: 'Dosis'),
+              ),
+              BarChartSample3(),
+            ],
+          ),
+        ),
+      );
     } else {
       return SizedBox(height: 10);
     }
@@ -27,12 +39,10 @@ class _BrasilDataState extends State<BrasilData> {
   void updateData(value) async {
     setState(() {
       selected = value;
-      waitData = value == 'Rio de Janeiro'
-          ? apiData.RioCurrentData()
+      waitData = value != 'Brasil'
+          ? apiData.StateCurrentData(value)
           : apiData.countryCurrentData();
     });
-
-    //waitData = apiData.RioCurrentData();
   }
 
   @override
@@ -70,9 +80,22 @@ class _BrasilDataState extends State<BrasilData> {
                                 '${snapshot.data['recovered'] ?? 'carregando'}',
                             color: Colors.blue,
                           )
-                        : SizedBox(height: 10),
+                        : Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: BasicContainer(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Mortes nos ultimos 7 dias',
+                                    style: TextStyle(
+                                        fontSize: 30, fontFamily: 'Dosis'),
+                                  ),
+                                  BarChartSample3(),
+                                ],
+                              ),
+                            ),
+                          ),
                     SizedBox(height: 30),
-                    graphic(),
                     SizedBox(height: 300)
                   ],
                 ),

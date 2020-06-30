@@ -35,7 +35,6 @@ class _PageTemplateState extends State<PageTemplate> {
         controller: _controller,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //mainAxisSize: MainAxisSize.max,
           children: [
             Header(offset: offset),
             SizedBox(height: 20),

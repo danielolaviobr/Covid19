@@ -1,3 +1,4 @@
+import 'package:covid19/constants.dart';
 import 'package:covid19/widgets/basic_container.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class DropList extends StatefulWidget {
 }
 
 class _DropListState extends State<DropList> {
-  List<String> items = ['Brasil', 'Rio de Janeiro'];
+  List<String> items = kStateList;
   String selected = 'Brasil';
 
   @override

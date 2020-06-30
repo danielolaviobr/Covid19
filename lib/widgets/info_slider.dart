@@ -5,7 +5,7 @@ class InfoSliderItem extends StatelessWidget {
   final String text;
   final String image;
 
-  const InfoSliderItem({Key key, this.text, this.image}) : super(key: key);
+  const InfoSliderItem({this.text, this.image});
 
   @override
   Widget build(BuildContext context) {
