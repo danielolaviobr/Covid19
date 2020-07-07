@@ -14,31 +14,17 @@ class _BrasilDataState extends State<BrasilData> {
   Future<Map<String, int>> waitData = apiData.countryCurrentData();
   bool checker = false;
   String selected = 'Brasil';
+  List<int> dataList = [];
 
-  Widget graphic() {
-    if (selected != 'Brasil') {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: BasicContainer(
-          child: Column(
-            children: [
-              Text(
-                'Mortes nos ultimos 7 dias',
-                style: TextStyle(fontSize: 30, fontFamily: 'Dosis'),
-              ),
-              BarChartSample3(),
-            ],
-          ),
-        ),
-      );
-    } else {
-      return SizedBox(height: 10);
-    }
+  Future<List<int>> getGraphData(selected) async {
+    return dataList = await apiData
+        .getPastWeekData(selected != 'Brasil' ? selected : 'Rio de Janeiro');
   }
 
   void updateData(value) async {
     setState(() {
       selected = value;
+      getGraphData(value);
       waitData = value != 'Brasil'
           ? apiData.StateCurrentData(value)
           : apiData.countryCurrentData();
@@ -47,6 +33,7 @@ class _BrasilDataState extends State<BrasilData> {
 
   @override
   void initState() {
+    getGraphData(selected);
     super.initState();
   }
 
@@ -90,13 +77,21 @@ class _BrasilDataState extends State<BrasilData> {
                                     style: TextStyle(
                                         fontSize: 30, fontFamily: 'Dosis'),
                                   ),
-                                  BarChartSample3(),
+                                  FutureBuilder(
+                                      future: getGraphData(selected),
+                                      builder: (_, dataSnapshot) {
+                                        var oldData = dataSnapshot.data;
+                                        return dataSnapshot.hasData
+                                            ? Chart(dataList: dataList)
+                                            : Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                      }),
                                 ],
                               ),
                             ),
                           ),
                     SizedBox(height: 30),
-                    SizedBox(height: 300)
                   ],
                 ),
               ),

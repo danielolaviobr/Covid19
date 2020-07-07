@@ -1,13 +1,18 @@
-import 'package:covid19/widgets/basic_container.dart';
+import 'dart:math';
+import 'package:covid19/main.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class BarChartSample3 extends StatefulWidget {
+class Chart extends StatefulWidget {
+  final List<int> dataList;
+
+  const Chart({Key key, this.dataList}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() => BarChartSample3State();
+  State<StatefulWidget> createState() => ChartState();
 }
 
-class BarChartSample3State extends State<BarChartSample3> {
+class ChartState extends State<Chart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -15,7 +20,9 @@ class BarChartSample3State extends State<BarChartSample3> {
       child: BarChart(
         BarChartData(
           alignment: BarChartAlignment.spaceAround,
-          maxY: 2000,
+          maxY: widget.dataList.reduce(max).toDouble() > 10000
+              ? widget.dataList.reduce(max).toDouble() + 4000
+              : widget.dataList.reduce(max).toDouble() + 2000,
           barTouchData: BarTouchData(
             enabled: false,
             touchTooltipData: BarTouchTooltipData(
@@ -50,21 +57,23 @@ class BarChartSample3State extends State<BarChartSample3> {
                   fontSize: 14),
               margin: 20,
               getTitles: (double value) {
+                List<int> myDates = apiData.pastSevenDays();
+
                 switch (value.toInt()) {
                   case 0:
-                    return '23';
+                    return myDates[6].toString();
                   case 1:
-                    return '24';
+                    return myDates[5].toString();
                   case 2:
-                    return '25';
+                    return myDates[4].toString();
                   case 3:
-                    return '26';
+                    return myDates[3].toString();
                   case 4:
-                    return '27';
+                    return myDates[2].toString();
                   case 5:
-                    return '28';
+                    return myDates[1].toString();
                   case 6:
-                    return '29';
+                    return myDates[0].toString();
                   default:
                     return '';
                 }
@@ -77,30 +86,48 @@ class BarChartSample3State extends State<BarChartSample3> {
           ),
           barGroups: [
             //TODO provide values
-            BarChartGroupData(
-                x: 0,
-                barRods: [BarChartRodData(y: 800, color: Colors.redAccent)],
-                showingTooltipIndicators: [0]),
-            BarChartGroupData(
-                x: 1,
-                barRods: [BarChartRodData(y: 1200, color: Colors.redAccent)],
-                showingTooltipIndicators: [0]),
-            BarChartGroupData(
-                x: 2,
-                barRods: [BarChartRodData(y: 1000, color: Colors.redAccent)],
-                showingTooltipIndicators: [0]),
-            BarChartGroupData(
-                x: 3,
-                barRods: [BarChartRodData(y: 1500, color: Colors.redAccent)],
-                showingTooltipIndicators: [0]),
-            BarChartGroupData(
-                x: 3,
-                barRods: [BarChartRodData(y: 800, color: Colors.redAccent)],
-                showingTooltipIndicators: [0]),
-            BarChartGroupData(
-                x: 3,
-                barRods: [BarChartRodData(y: 950, color: Colors.redAccent)],
-                showingTooltipIndicators: [0]),
+            BarChartGroupData(x: 0, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[6].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
+            BarChartGroupData(x: 1, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[5].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
+            BarChartGroupData(x: 2, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[4].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
+            BarChartGroupData(x: 3, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[3].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
+            BarChartGroupData(x: 3, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[2].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
+            BarChartGroupData(x: 3, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[1].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
+            BarChartGroupData(x: 3, barRods: [
+              BarChartRodData(
+                  y: widget.dataList[0].toDouble(), color: Colors.redAccent)
+            ], showingTooltipIndicators: [
+              0
+            ]),
           ],
         ),
       ),

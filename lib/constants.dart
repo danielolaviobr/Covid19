@@ -25,18 +25,20 @@ const List<String> kTextList = [
   'Febre',
 ];
 
+const List<int> k31DaysMonths = [1, 3, 5, 7, 8, 10, 12];
+
 const List<String> kStateList = [
   'Brasil',
   'Rio de Janeiro',
-  'Sao Paulo',
+  'São Paulo',
   'Acre',
   'Alagoas',
   'Amazonas',
   'Bahia',
   'Ceará',
-  'Brasilia',
-  'Espirito Santo',
-  'Goaiás',
+  'Distrito Federal',
+  'Espírito Santo',
+  'Goiás',
   'Maranhão',
   'Mato Grosso',
   'Mato Grosso do Sul',

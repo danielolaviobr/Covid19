@@ -3,7 +3,6 @@ import 'package:covid19/widgets/header.dart';
 import 'package:covid19/widgets/info_card.dart';
 import 'package:covid19/widgets/info_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PageTemplate extends StatefulWidget {
   @override
@@ -49,11 +48,12 @@ class _PageTemplateState extends State<PageTemplate> {
               title: 'Dados',
               text: 'Veja aqui os dados sobre o Corona Virus no Brasil',
               onTap: () {
-                Get.to(BrasilData());
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BrasilData()));
               },
             ),
             SizedBox(
-              height: 200,
+              height: 20,
             )
           ],
         ),

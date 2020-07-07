@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:covid19/constants.dart';
-import 'package:flutter_svg/svg.dart';
 
 class InfoCard extends StatelessWidget {
   final String image;
@@ -8,7 +7,8 @@ class InfoCard extends StatelessWidget {
   final String text;
   final Function onTap;
 
-  const InfoCard({Key key, this.image, this.title, this.text, this.onTap})
+  const InfoCard(
+      {Key key, @required this.image, this.title, this.text, this.onTap})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
