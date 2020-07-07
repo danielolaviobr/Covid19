@@ -1,16 +1,11 @@
-# covid19
+# Covid-19 App
 
-A new Flutter project.
+100% made in Flutter, and reproduces live data for each state in Brazil and the whole country.
 
-## Getting Started
+Made using the [Covid-19 Brazil API](https://covid19-brazil-api.now.sh "Covid-19 API")
 
-This project is a starting point for a Flutter application.
+<img src="https://i.ibb.co/j4p9M7F/Screenshot-1594159843.png" height="700">
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://i.ibb.co/56G11t9/Screenshot-1594161052.png" height="700">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://i.ibb.co/6sCF71X/Screenshot-1594160922.png" height="700">
